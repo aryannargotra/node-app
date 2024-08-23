@@ -42,3 +42,4 @@ Push the tagged image to your AWS ECR repository:
 docker push {docker registry}.amazonaws.com/my-app:1.0
 ```
 
+4 . So, after you package your application in a docker image and save it in a private repository you need to deploy it on some server so that developer and testers and actually try to app working.
