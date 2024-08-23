@@ -6,5 +6,9 @@ In this repository, we will containerize a simple Node.js application using Dock
 
 Firstly, to build a Docker image from the application, use the following command:
 
-```bash
+```
 docker build -t my-app:1.0 .
+```
+# Running the Docker Container
+
+``` docker run -d -p 3000:3000 --name my-running-app my-app:1.0 ```
