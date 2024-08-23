@@ -1,30 +1,44 @@
-# Node App
+# Node.js Application Containerization
+In this repository, we demonstrate how to containerize a simple Node.js application using Docker and replicate common CI/CD steps found in real-world scenarios.
 
-In this repository, we will containerize a simple Node.js application using Docker and replicate common CI/CD steps performed in real-world scenarios.
+Simulating CI/CD Integration
+The following screenshot illustrates how Jenkins can be configured to push Docker images to a repository:
 
-## Building the Docker Image
+![Screenshot 2024-08-23 at 1 11 49 PM](https://github.com/user-attachments/assets/1f3ec579-a7a8-4a36-aec8-00b006deb5fb)
 
-Firstly, to build a Docker image from the application, use the following command:
+Building the Docker Image
+To build a Docker image for your Node.js application, use the following command:
 
 ```
 docker build -t my-app:1.0 .
 ```
-# Running the Docker Container
+This command will create a Docker image tagged as my-app:1.0.
+
+Running the Docker Container
+To run a container from the image, use:
 
 ```
- docker run -d -p 3000:3000 --name my-running-app my-app:1.0 
+docker run -d -p 3000:3000 --name my-running-app my-app:1.0
 ```
-# Creating repo in AWS Elastic container Repository (ECR)
-Pushing Private repo so we will give Docker log in to authenticate
+This command starts a container in detached mode, mapping port 3000 from the container to port 3000 on your host machine.
+
+Pushing the Image to AWS Elastic Container Registry (ECR)
+1. Authenticate Docker with AWS ECR
+First, authenticate Docker to your AWS ECR repository:
 
 ```
-aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 088005245182.dkr.ecr.ap-south-1.amazonaws.com
+aws ecr get-login-password --region ap-south-1 | {authentication command}.amazonaws.com
 ```
-tag your image so you can push the image to this repository:
+2. Tag the Docker Image
+Tag your Docker image to prepare it for pushing to AWS ECR:
+
 ```
-# Docker push command may wary for you 
-docker tag my-app:1.0.amazonaws.com/my-app:1.0
+docker tag my-app:1.0 {docker registry}.amazonaws.com/my-app:1.0
 ```
-Docker Push ```Image Name```
-# Here We simulated how a jenkins will push an image to docker repository
-![Screenshot 2024-08-23 at 1 11 49 PM](https://github.com/user-attachments/assets/bd6c0e61-db57-4eb3-8c70-2596fe25528d)
+3. Push the Docker Image to ECR
+Push the tagged image to your AWS ECR repository:
+
+```
+docker push {docker registry}.amazonaws.com/my-app:1.0
+```
+
