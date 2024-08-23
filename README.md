@@ -1,11 +1,10 @@
-# node-app
+# Node App
 
-In this repo we will containerise a simple node app using docker and try to replicate all the CI/CD steps we perform in real worrld scenario 
+In this repository, we will containerize a simple Node.js application using Docker and replicate common CI/CD steps performed in real-world scenarios.
 
-Firstly To build a docker image from the application
+## Building the Docker Image
 
-docker build -t my-app:1.0 .       
+Firstly, to build a Docker image from the application, use the following command:
 
-To run your image and start a container, you can use the docker run command
-'''bash
-docker run -d -p 3000:3000 --name my-running-app my-app:1.0
+```bash
+docker build -t my-app:1.0 .
